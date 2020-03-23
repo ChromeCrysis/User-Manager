@@ -9,7 +9,7 @@ class Cadastro():
 
         try:
             if confirmar_user == 'sim' or confirmar_user == 's' or confirmar_user == 'SIM' or confirmar_user == 'Sim':
-                os.system("net user" + " " + user + " " + password + " " + "/add")
+                os.system(f"net user {user} {password} /add")
                 print(f"Usuário {user} criado com sucesso.")
             elif confirmar_user == 'nao' or confirmar_user == 'n' or confirmar_user == 'NAO' or confirmar_user == 'Nao':
                 print("Cancelando operação. \n")
@@ -24,12 +24,22 @@ class Cadastro():
 
         try:
             if confirmar_user == 'sim' or confirmar_user == 's' or confirmar_user == 'SIM' or confirmar_user == 'Sim':
-                os.system("net localgroup Administradores" + " " + user + " " + "/add")
+                os.system(f"net localgroup Administradores {user} /add")
                 print(f"Usuário {user} cadastrado como administrador com  sucesso. \n")
             elif confirmar_user == 'nao' or confirmar_user == 'n' or confirmar_user == 'NAO' or confirmar_user == 'Nao':
                 print("Cancelando operação. \n")
             else:
                 print("Comando não reconhecido! \n")
+        except:
+            print("Operação não realizada, tente novamente. \n")
+    
+    def ativar_admin(self=None):
+        confirmar_user = str(input("Deseja ativar o Administrador local do Windows? "))
+
+        try:
+            if confirmar_user == 'sim' or confirmar_user == 's' or confirmar_user == 'SIM' or confirmar_user == 'Sim':
+                os.system("net user Administrador /active:yes")
+                print("O Administrador local foi ativo com sucesso. \n")
         except:
             print("Operação não realizada, tente novamente. \n")
 
